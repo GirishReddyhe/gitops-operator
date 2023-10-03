@@ -1,0 +1,121 @@
+apiVersion: operators.coreos.com/v1alpha1
+kind: ClusterServiceVersion
+metadata:
+  annotations:
+    capabilities: Deep Insights
+    console.openshift.io/plugins: '["gitops-plugin"]'
+    containerImage: quay.io/redhat-developer/gitops-operator
+    description: Enables teams to adopt GitOps principles for managing cluster configurations
+      and application delivery across hybrid multi-cluster Kubernetes environments.
+    operators.openshift.io/infrastructure-features: '["disconnected"]'
+    repository: https://github.com/redhat-developer/gitops-operator
+    support: Red Hat
+  name: gitops-operator.v1.8.0
+  namespace: placeholder
+spec:
+  apiservicedefinitions: {}
+  customresourcedefinitions:
+    owned:
+    - description: An Application is a group of Kubernetes resources as defined by
+        a manifest.
+      displayName: Application
+      kind: Application
+      name: applications.argoproj.io
+      version: v1alpha1
+    - description: An AppProject is a logical grouping of Argo CD Applications.
+      displayName: AppProject
+      kind: AppProject
+      name: appprojects.argoproj.io
+      version: v1alpha1
+    - description: Argo CD is the representation of an Argo CD deployment.
+      displayName: Argo CD
+      kind: ArgoCD
+      name: argocds.argoproj.io
+      resources:
+      - kind: ArgoCD
+        name: ""
+        version: v1alpha1
+      - kind: ConfigMap
+        name: ""
+        version: v1
+      - kind: CronJob
+        name: ""
+        version: v1
+      - kind: Deployment
+        name: ""
+        version: v1
+      - kind: Ingress
+        name: ""
+        version: v1
+      - kind: Job
+        name: ""
+        version: v1
+      - kind: PersistentVolumeClaim
+        name: ""
+        version: v1
+      - kind: Pod
+        name: ""
+        version: v1
+      - kind: Prometheus
+        name: ""
+        version: v1
+      - kind: ReplicaSet
+        name: ""
+        version: v1
+      - kind: Route
+        name: ""
+        version: v1
+      - kind: Secret
+        name: ""
+        version: v1
+      - kind: Service
+        name: ""
+        version: v1
+      - kind: ServiceMonitor
+        name: ""
+        version: v1
+      - kind: StatefulSet
+        name: ""
+        version: v1
+      version: v1alpha1
+    - description: ApplicationSet is the representation of an ApplicationSet controller
+        deployment.
+      kind: ApplicationSet
+      name: applicationsets.argoproj.io
+      version: v1alpha1
+    - description: GitopsService is the Schema for the gitopsservices API
+      displayName: Gitops Service
+      kind: GitopsService
+      name: gitopsservices.pipelines.openshift.io
+      version: v1alpha1
+  displayName: Red Hat OpenShift GitOps
+  install:
+    spec:
+      deployments: null
+    strategy: ""
+  installModes:
+  - supported: false
+    type: OwnNamespace
+  - supported: false
+    type: SingleNamespace
+  - supported: false
+    type: MultiNamespace
+  - supported: true
+    type: AllNamespaces
+  keywords:
+  - devtools
+  - gitops
+  - pipelines
+  links:
+  - name: Day 1 Operations
+    url: https://github.com/redhat-developer/kam/tree/master/docs/journey/day1
+  - name: Day 2 Operations
+    url: https://github.com/redhat-developer/kam/tree/master/docs/journey/day2
+  maintainers:
+  - email: shbose@redhat.com
+    name: shoubhik
+  maturity: alpha
+  provider:
+    name: Red Hat Inc
+  replaces: gitops-operator.v1.7.3
+  version: 1.8.0
